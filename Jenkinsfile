@@ -10,8 +10,8 @@ pipeline {
             agent any 
             steps {
                 echo 'Building Image from Dockerfile'
-                echo 'Will tag the image as jupyter-travis. Will need this for push stage.'
-                sh 'docker build -t jupyter-travis dockerfiles/jupytertravis/.'
+                echo 'Will tag the image as test-jenkins. Will need this for push stage.'
+                sh 'docker build -t test-jenkins dockerfiles/jupytertravis/.'
                 echo 'Build Stage Complete'
             }
         }
@@ -35,7 +35,7 @@ pipeline {
 			      steps {
                 echo 'Pushing image to Docker Hub'
                 sh 'docker images'
-                sh 'docker tag jupyter-travis mbfishman94/build-pipeline-demo'
+                sh 'docker tag test-jenkins mbfishman94/build-pipeline-demo'
 				        sh 'docker images'
                 sh 'docker push mbfishman94/build-pipeline-demo:latest'
                 echo 'Push Stage Complete'
